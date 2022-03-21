@@ -46,6 +46,7 @@ function Auth() {
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
+            localStorage.setItem("profile", JSON.stringify({ ...res.data }));
           }
         })
         .catch((err) => console.log(err));
@@ -57,6 +58,7 @@ function Auth() {
         })
         .then((res) => {
           if (res.status === 200) {
+            localStorage.setItem("profile", JSON.stringify({ ...res.data }));
           }
         })
         .catch((err) => console.log(err));

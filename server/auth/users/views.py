@@ -48,7 +48,8 @@ class LoginView(APIView):
         res.data = {
             "email": serializer.data["email"],
             "name": serializer.data["name"],
-            "jwt": "nihalmc",
+            "lastname": serializer.data["lastname"],
+            "img": serializer.data["img"],
         }
         return res
 
