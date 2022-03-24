@@ -14,9 +14,9 @@ import { GoogleLogin } from "react-google-login";
 import Icon from "./icon";
 import axios from "axios";
 
-// import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
-// import { signin, signuphere } from '../../actions/auth';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signin, signuphere } from '../../action/auth';
 
 const initialState = {
   name: "",
@@ -31,37 +31,17 @@ function Auth() {
   const [signup, setIsSignup] = useState(false);
   const [showPassword, setshowPassword] = useState(false);
   const [form, setForm] = useState(initialState);
-  // const dispatch = useDispatch();
-  // const history = useNavigate();
+  const dispatch = useDispatch();
+  const history = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (signup) {
       console.log(form);
-      // dispatch(signuphere(form, history));
-      axios
-        .post("http://127.0.0.1:8000/api/register", form, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            localStorage.setItem("profile", JSON.stringify({ ...res.data }));
-          }
-        })
-        .catch((err) => console.log(err));
+      dispatch(signuphere(form, history));
+
     } else {
-      // dispatch(signin(form, history));
-      axios
-        .post("http://127.0.0.1:8000/api/login", form, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            localStorage.setItem("profile", JSON.stringify({ ...res.data }));
-          }
-        })
-        .catch((err) => console.log(err));
+      dispatch(signin(form, history));
     }
   };
   const handleChange = (e) =>
@@ -74,14 +54,14 @@ function Auth() {
     setIsSignup(!signup);
   };
   const googleSuccess = async (res) => {
-    // const result = res?.profileObj;
-    // const token = res?.tokenId;
-    // try {
-    //   dispatch({ type: 'AUTH', data: { result, token } });
-    //   history('/');
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+    try {
+      dispatch({ type: 'AUTH', data: { result, token } });
+      history('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
   const googleError = (error) => {
     console.log(error);
