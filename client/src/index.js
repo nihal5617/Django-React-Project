@@ -11,10 +11,10 @@ import './index.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import 'bootstrap/dist/vendor/aos/aos.css'
-import 'bootstrap/dist/vendor/bootstrap-icons/bootstrap-icons.css'
-import 'bootstrap/dist/vendor/boxicons/css/boxicons.min.css'
-import 'bootstrap/dist/vendor/swiper/swiper-bundle.min.css'
+// import 'bootstrap/dist/vendor/aos/aos.css'
+// import 'bootstrap/dist/vendor/bootstrap-icons/bootstrap-icons.css'
+// import 'bootstrap/dist/vendor/boxicons/css/boxicons.min.css'
+// import 'bootstrap/dist/vendor/swiper/swiper-bundle.min.css'
 // import reportWebVitals from './reportWebVitals';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
